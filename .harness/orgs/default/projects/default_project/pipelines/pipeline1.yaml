@@ -31,3 +31,35 @@ pipeline:
                       spec:
                         branch: main
         tags: {}
+    - stage:
+        name: build1
+        identifier: build1
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: dockerconnector
+                    repo: tushar448/terraformapp
+                    tags:
+                      - latest
+  properties:
+    ci:
+      codebase:
+        connectorRef: harnessgit
+        build: <+input>
