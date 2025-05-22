@@ -1,0 +1,33 @@
+pipeline:
+  name: pipeline1
+  identifier: pipeline1
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: download
+        identifier: download
+        description: ""
+        type: IACM
+        spec:
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          workspace: newworkspace1
+          execution:
+            steps:
+              - step:
+                  type: GitClone
+                  name: GitClone_1
+                  identifier: GitClone_1
+                  spec:
+                    connectorRef: harnessgit
+                    build:
+                      type: branch
+                      spec:
+                        branch: main
+        tags: {}
